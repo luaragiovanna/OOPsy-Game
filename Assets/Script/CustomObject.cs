@@ -5,7 +5,7 @@ using UnityEngine;
 public class CustomObject : MonoBehaviour
 {
     public string objectColor;
-    public string objectShape;
+    public string objectShape; //atributos do ET01
     public int numDeOlhos;
 
     public void SetAttributes(string color, string shape, int olhos)
@@ -21,7 +21,7 @@ public class CustomObject : MonoBehaviour
         SkinnedMeshRenderer renderer = GetComponentInChildren<SkinnedMeshRenderer>();
         if (renderer != null)
         {
-            // Instanciar o material para garantir que estamos modificando a instância correta
+            
             if (renderer.material != null)
             {
                 renderer.material = new Material(renderer.material);
@@ -29,16 +29,16 @@ public class CustomObject : MonoBehaviour
                 switch (objectColor.ToLower())
                 {
                     case "azul":
-                        renderer.material.SetColor("_Color", new Color(0.329f, 0.369f, 0.953f)); // 545EF3
+                        renderer.material.SetColor("_Color", new Color(0f, 0f, 1f)); //azul em rgb
                         break;
                     case "vermelho":
-                        renderer.material.SetColor("_Color", new Color(1f, 0f, 0.011f)); // FF0003
+                        renderer.material.SetColor("_Color", new Color(1f, 0f, 0f)); //vermelho rgb
                         break;
                     case "verde":
-                        renderer.material.SetColor("_Color", new Color(0.082f, 1f, 0f)); // 15FF00
+                        renderer.material.SetColor("_Color", new Color(0f, 1f, 0f)); 
                         break;
                     case "roxo":
-                        renderer.material.SetColor("_Color", new Color(0.5f, 0f, 0.5f)); // Roxo
+                        renderer.material.SetColor("_Color", new Color(0.5f, 0f, 0.5f)); 
                         break;
                     default:
                         renderer.material.color = Color.white;
