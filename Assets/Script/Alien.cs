@@ -12,19 +12,19 @@ public class Alien : MonoBehaviour
     public Button blueButton;
     public Button greenButton;
     public Button redButton;
-    public GameObject optionsPanel; // Painel de opÁıes de di·logo
+    public GameObject optionsPanel; // Painel de op√ß√µes de di√°logo
     public Button option1Button;
     public Button option2Button;
-    public Button methodButton; // Bot„o para acionar o mÈtodo
-    public Button understoodButton; // Bot„o "Entendi"
+    public Button methodButton; // Bot√£o para acionar o m√©todo
+    public Button understoodButton; // Bot√£o "Entendi"
     public GameObject classPanel; // Painel da classe
     public GameObject challengePanel;
     private GameObject instantiatedObject;
-    private bool isTalking = false; // Flag para verificar se o alien est· falando
-    private bool isFloating = true; // Estado de flutuaÁ„o do ET01
+    private bool isTalking = false; // Flag para verificar se o alien est√° falando
+    private bool isFloating = true; // Estado de flutua√ß√£o do ET01
     private Camera cinemachineCamera;
-    private Vector3 initialPosition; // PosiÁ„o inicial do ET01
-    private Vector3 groundPosition; // PosiÁ„o no solo
+    private Vector3 initialPosition; // Posi√ß√£o inicial do ET01
+    private Vector3 groundPosition; // Posi√ß√£o no solo
     private ClassPanelController classPanelController; // Controlador do painel da classe
     private InstantiationPanelController instantiationPanelController;
     public ItemCollectionManager itemCollectionManager;
@@ -74,12 +74,12 @@ public class Alien : MonoBehaviour
             Debug.LogError("ClassPanelController not found on classPanel.");
         }
 
-        // Certificar que o painel de instanciaÁ„o est· desativado no inÌcio
+      
         instantiationPanelController = challengePanel.GetComponent<InstantiationPanelController>();
         if (instantiationPanelController != null)
         {
             instantiationPanelController.HidePseudocode();
-            challengePanel.SetActive(false); // Desativa o painel no inÌcio
+            challengePanel.SetActive(false); // desativa o painel 
         }
         else
         {
@@ -109,8 +109,8 @@ public class Alien : MonoBehaviour
         isTalking = true;
 
         string[] explanationDialogues = {
-            "Ol·! Eu sou o guardi„o deste planeta.",
-            "Este È o Plane OBJETOS!",
+            "Ol√°! Eu sou o guardi√£o deste planeta.",
+            "Este √© o Plane OBJETOS!",
             "Deixe-me te mostrar como criamos objetos aqui.",
             "Um objeto tem atributos como cor e forma.",
             "Vou criar um objeto extraterrestre."
@@ -120,7 +120,7 @@ public class Alien : MonoBehaviour
         yield return new WaitForSeconds(2 * explanationDialogues.Length);
 
         string[] creationDialogues = {
-            "Veja, este È o nosso objeto.",
+            "Veja, este √© o nosso objeto.",
         };
         dialogueManager.StartDialogue(creationDialogues);
 
@@ -145,7 +145,7 @@ public class Alien : MonoBehaviour
             instantiatedObject = Instantiate(extraterrestrialPrefab, spawnPosition, Quaternion.identity);
             instantiatedObject.SetActive(true);
 
-            // Defina a posiÁ„o inicial e a posiÁ„o no solo
+            // Defina a posi√ß√£o inicial e a posi√ß√£o no solo
             initialPosition = instantiatedObject.transform.position;
             groundPosition = new Vector3(initialPosition.x, -2.07f, initialPosition.z);
 
@@ -176,19 +176,19 @@ public class Alien : MonoBehaviour
 
         string[] attributeDialogues = {
             "   Esse objeto, do tipo extraterrestre, se chama ET01! E ele tem atributos...",
-            "   VocÍ gostaria de saber mais sobre atributos?"
+            "   Voc√™ gostaria de saber mais sobre atributos?"
         };
         dialogueManager.StartDialogue(attributeDialogues);
 
-        yield return new WaitForSeconds(3); // Tempo de exibiÁ„o da pergunta
+        yield return new WaitForSeconds(3); 
 
-        ShowOptionsPanel(); // Mostrar opÁıes apÛs a pergunta
+        ShowOptionsPanel(); 
     }
 
     private void ShowOptionsPanel()
     {
         Debug.Log("Showing options panel.");
-        dialogueManager.EndDialogue(); // Remove o texto de di·logo antes de mostrar os botıes
+        dialogueManager.EndDialogue(); // tira texto antes de mostrar botoes
         optionsPanel.SetActive(true);
     }
 
@@ -197,7 +197,7 @@ public class Alien : MonoBehaviour
         optionsPanel.SetActive(false);
         string[] responses = {
             "Uau! Muito legal!",
-            "Atributos? O que È isso?"
+            "Atributos? O que √© isso?"
         };
 
         if (responseIndex >= 0 && responseIndex < responses.Length)
@@ -211,7 +211,7 @@ public class Alien : MonoBehaviour
             }
             else if (responseIndex == 1) // "Atributos?"
             {
-                string[] followUpDialogues = { response, "  Atributos s„o caracterÌsticas..", "Que objetos de uma mesma classe compartilham!", "Vamos! agora experimente!", "Altere o atributo cor!" };
+                string[] followUpDialogues = { response, "  Atributos s√£o caracter√≠sticas..", "Que objetos de uma mesma classe compartilham!", "Vamos! agora experimente!", "Altere o atributo cor!" };
                 dialogueManager.StartDialogue(followUpDialogues);
                 StartCoroutine(ShowColorButtons());
             }
@@ -220,7 +220,7 @@ public class Alien : MonoBehaviour
 
     private IEnumerator FinalizeInteraction()
     {
-        yield return new WaitForSeconds(3); // Tempo para o di·logo "Concordo!"
+        yield return new WaitForSeconds(3); // Tempo para o di√°logo "Concordo!"
         string[] finalDialogues = { "..." };
         dialogueManager.StartDialogue(finalDialogues);
         isTalking = false;
@@ -229,7 +229,7 @@ public class Alien : MonoBehaviour
 
     private IEnumerator ShowColorButtons()
     {
-        yield return new WaitForSeconds(4); // Tempo para o di·logo "Vamos! agora experimente! Altere o atributo cor!"
+        yield return new WaitForSeconds(4); // Tempo para o di√°logo "Vamos! agora experimente! Altere o atributo cor!"
         blueButton.gameObject.SetActive(true);
         greenButton.gameObject.SetActive(true);
         redButton.gameObject.SetActive(true);
@@ -246,7 +246,7 @@ public class Alien : MonoBehaviour
         SkinnedMeshRenderer renderer = instantiatedObject.GetComponentInChildren<SkinnedMeshRenderer>();
         if (renderer != null)
         {
-            // Instanciar o material para garantir que estamos modificando a inst‚ncia correta
+            // Instanciar o material para garantir que estamos modificando a inst√¢ncia correta
             renderer.material = new Material(renderer.material);
 
             // Alterar a cor do Albedo com base no nome da cor
@@ -284,10 +284,10 @@ public class Alien : MonoBehaviour
         redButton.gameObject.SetActive(false);
 
         string[] finalDialogues = {
-        "   Agora, vocÍ alterou o atributo cor do extraterrestre!"
+        "   Agora, voc√™ alterou o atributo cor do extraterrestre!"
     };
         dialogueManager.StartDialogue(finalDialogues);
-        isTalking = false; // Permitir interaÁ„o apÛs a fala final
+        isTalking = false; // Permitir intera√ß√£o ap√≥s a fala final
         StartCoroutine(ExplainMethod());
     }
 
@@ -296,10 +296,10 @@ public class Alien : MonoBehaviour
     private IEnumerator ExplainMethod()
     {
         string[] methodDialogues = {
-            "   Legal! Agora que vocÍ sabe o que atributos s„o, vamos para os mÈtodos!",
-            "   Lembra deste objeto nÈ? O ET01! Consegue ver que agora ele tem um mÈtodo?",
-            "   Consegue ver esse 'true'? Significa que o mÈtodo est· ativo!",
-            "   Vamos! Experimente acionar o mÈtodo pra ver o que acontece!"
+            "   Legal! Agora que voc√™ sabe o que atributos s√£o, vamos para os m√©todos!",
+            "   Lembra deste objeto n√©? O ET01! Consegue ver que agora ele tem um m√©todo?",
+            "   Consegue ver esse 'true'? Significa que o m√©todo est√° ativo!",
+            "   Vamos! Experimente acionar o m√©todo pra ver o que acontece!"
         };
         dialogueManager.StartDialogue(methodDialogues);
 
@@ -315,7 +315,7 @@ public class Alien : MonoBehaviour
     {
         isFloating = !isFloating;
 
-        // Atualizar a posiÁ„o do objeto com base no estado de flutuaÁ„o
+        // Atualizar a posi√ß√£o do objeto com base no estado de flutua√ß√£o
         if (isFloating)
         {
             instantiatedObject.transform.position = initialPosition;
@@ -334,8 +334,8 @@ public class Alien : MonoBehaviour
     private IEnumerator PlayDieAnimation()
     {
         animator.Play("Die");
-        yield return new WaitForSeconds(1.0f); // Tempo suficiente para alcanÁar o frame 20
-        animator.speed = 0; // Pausa a animaÁ„o no frame atual
+        yield return new WaitForSeconds(1.0f); // Tempo suficiente para alcan√ßar o frame 20
+        animator.speed = 0; // Pausa a anima√ß√£o no frame atual
     }
 
     private void DisplayMethodInfo(GameObject obj)
@@ -346,14 +346,14 @@ public class Alien : MonoBehaviour
             string objectInfo = $"ET01:Extraterrestre\n" +
                                 $"modelo: {customObject.objectShape}\n" +
                                 $"cor: {customObject.objectColor}\n" +
-                                $"n˙mero de olhos: {customObject.numDeOlhos}\n" +
+                                $"n√∫mero de olhos: {customObject.numDeOlhos}\n" +
                                 $"flutuar: {isFloating}\n";
 
             InfoPanelController panelController = infoPanel.GetComponent<InfoPanelController>();
             if (panelController != null)
             {
                 panelController.UpdateInfoText(objectInfo);
-                panelController.SetStatic(); // Nova funÁ„o para tornar o painel est·tico
+                panelController.SetStatic(); // Nova fun√ß√£o para tornar o painel est√°tico
             }
         }
     }
@@ -366,13 +366,13 @@ public class Alien : MonoBehaviour
             string objectInfo = $"ET01:Extraterrestre\n" +
                                 $"modelo: {customObject.objectShape}\n" +
                                 $"cor: {customObject.objectColor}\n" +
-                                $"n˙mero de olhos: {customObject.numDeOlhos}\n";
+                                $"n√∫mero de olhos: {customObject.numDeOlhos}\n";
 
             InfoPanelController panelController = infoPanel.GetComponent<InfoPanelController>();
             if (panelController != null)
             {
                 panelController.UpdateInfoText(objectInfo);
-                panelController.SetStatic(); // Nova funÁ„o para tornar o painel est·tico
+                panelController.SetStatic(); // Nova fun√ß√£o para tornar o painel est√°tico
             }
         }
     }
@@ -395,7 +395,7 @@ public class Alien : MonoBehaviour
         string[] classDialogues = {
             "  Agora que sabemos a estrutura de um objeto...", "precisamos saber de onde ele vem...",
             "  Todos os seres deste planeta pertencem a mesma classe..",
-            "  O nome da classe È PlanetaObjetos!"
+            "  O nome da classe √© PlanetaObjetos!"
         };
         dialogueManager.StartDialogue(classDialogues);
 
@@ -415,7 +415,7 @@ public class Alien : MonoBehaviour
         yield return new WaitForSeconds(3);
 
         string[] playerQuestion = {
-            "Ent„o vocÍ tambÈm È um objeto???"
+            "Ent√£o voc√™ tamb√©m √© um objeto???"
         };
         dialogueManager.StartDialogue(playerQuestion);
 
@@ -423,13 +423,13 @@ public class Alien : MonoBehaviour
 
         string[] alienResponse = {
             "Sim! Assim como ET01 sou um objeto desta classe",
-            "Isso significa que posso usar o mÈtodo flutuar!"
+            "Isso significa que posso usar o m√©todo flutuar!"
         };
         dialogueManager.StartDialogue(alienResponse);
 
         yield return new WaitForSeconds(2 * alienResponse.Length);
 
-        // LÛgica para fazer o alien flutuar por 3 segundos e depois voltar ao ch„o
+        // L√≥gica para fazer o alien flutuar por 3 segundos e depois voltar ao ch√£o
         Vector3 alienInitialPosition = transform.position;
         Vector3 floatingPosition = new Vector3(alienInitialPosition.x, -1.16f, alienInitialPosition.z);
 
@@ -439,14 +439,14 @@ public class Alien : MonoBehaviour
 
         if (classPanelController != null)
         {
-            classPanelController.HideClassInfo(); // Esconder o painel da classe apÛs a demonstraÁ„o
+            classPanelController.HideClassInfo();
         }
         ShowChallengePanel();
-        // Mostrar o painel de instanciaÁ„o apÛs a fala "Veja! Um novo ser est· sendo inst‚nciado"
+        // Mostrar o painel de instancia√ß√£o ap√≥s a fala "Veja! Um novo ser est√° sendo inst√¢nciado"
         string[] newObjectDialogue = {
             //deve aparecer o painelChallenge antes de falar:
-            "Veja! Um novo ser est· sendo inst‚nciado",
-            "Mas est„o faltando partes dele!"
+            "Veja! Um novo ser est√° sendo inst√¢nciado",
+            "Mas est√£o faltando partes dele!"
         };
         dialogueManager.StartDialogue(newObjectDialogue);
 
@@ -455,19 +455,19 @@ public class Alien : MonoBehaviour
         InstantiationPanelController instantiationPanelController = FindObjectOfType<InstantiationPanelController>();
         if (instantiationPanelController != null)
         {
-            instantiationPanelController.ShowPseudocode("ser = novo Extraterrestre()\nser.cor = [ ??? ]\nser.numOlhos = 1\nser.modelo = circular\n---------MÈtodos---------\nser.[ ]();");
+            instantiationPanelController.ShowPseudocode("ser = novo Extraterrestre()\nser.cor = [ ??? ]\nser.numOlhos = 1\nser.modelo = circular\n---------M√©todos---------\nser.[ ]();");
         }
 
         yield return new WaitForSeconds(3);
 
         string[] searchItemsDialogue = {
-            "Procure o valor do atributo cor, o mÈtodo e seu par‚metro"
+            "Procure o valor do atributo cor, o m√©todo e seu par√¢metro"
         };
         dialogueManager.StartDialogue(searchItemsDialogue);
 
         yield return new WaitForSeconds(2 * searchItemsDialogue.Length);
 
-        // Esconder o painel de instanciaÁ„o apÛs a fala "Procure o valor do atributo cor, o mÈtodo e seu par‚metro"
+        // Esconder o painel de instancia√ß√£o ap√≥s a fala "Procure o valor do atributo cor, o m√©todo e seu par√¢metro"
         if (instantiationPanelController != null)
         {
             instantiationPanelController.HidePseudocode();
@@ -479,8 +479,8 @@ public class Alien : MonoBehaviour
         if (instantiationPanelController != null)
         {
             Debug.Log("Showing challenge panel.");
-            challengePanel.SetActive(true); // Ativa o painel quando necess·rio
-            instantiationPanelController.ShowPseudocode("ser = novo Extraterrestre()\nser.cor = [ ??? ]\nser.numOlhos = 1\nser.modelo = circular\n---------MÈtodos---------\nser.[ ]();");
+            challengePanel.SetActive(true); // Ativa o painel quando necess√°rio
+            instantiationPanelController.ShowPseudocode("ser = novo Extraterrestre()\nser.cor = [ ??? ]\nser.numOlhos = 1\nser.modelo = circular\n---------M√©todos---------\nser.[ ]();");
         }
         else
         {
